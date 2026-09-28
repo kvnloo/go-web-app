@@ -213,11 +213,6 @@ function useColumns(searchResponse: SearchResponse | undefined) {
                 },
             }),
         ),
-        createStringColumn<SurgeAlertResult, number>(
-            'status',
-            strings.searchSurgeAlertTableStatus,
-            (surgeAlert) => surgeAlert.status,
-        ),
     ]), [
         strings.searchSurgeAlertTableAlertDate,
         strings.searchSurgeAlertTableDuration,
@@ -226,7 +221,6 @@ function useColumns(searchResponse: SearchResponse | undefined) {
         strings.searchSurgeAlertTableKeywords,
         strings.searchSurgeAlertTableEmergency,
         strings.searchSurgeAlertTableCountry,
-        strings.searchSurgeAlertTableStatus,
     ]);
 
     const getSurgeDeploymentColumns = useCallback(() => ([
