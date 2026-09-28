@@ -119,7 +119,8 @@ export function Component() {
         return {
             ...others,
             surge_alerts: others.surge_alerts?.filter(
-                (surgeAlert) => Number(surgeAlert.status) === SURGE_ALERT_STATUS_OPEN,
+                (surgeAlert) => isDefined(surgeAlert.status)
+                    && Number(surgeAlert.status) === SURGE_ALERT_STATUS_OPEN,
             ),
         };
     }, [searchResponseRaw]);
