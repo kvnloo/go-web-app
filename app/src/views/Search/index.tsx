@@ -35,6 +35,7 @@ import { defaultRanking } from '#utils/common';
 import {
     KEY_URL_SEARCH,
     SEARCH_TEXT_LENGTH_MIN,
+    SURGE_ALERT_STATUS_OPEN,
 } from '#utils/constants';
 import type { GoApiResponse } from '#utils/restRequest';
 import { useRequest } from '#utils/restRequest';
@@ -115,7 +116,12 @@ export function Component() {
             ...others
         } = searchResponseRaw;
 
-        return others;
+        return {
+            ...others,
+            surge_alerts: others.surge_alerts?.filter(
+                (surgeAlert) => Number(surgeAlert.status) === SURGE_ALERT_STATUS_OPEN,
+            ),
+        };
     }, [searchResponseRaw]);
 
     const headingStringMap = useMemo<Record<SearchResponseKeys, string>>(
